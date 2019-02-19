@@ -1,0 +1,11 @@
+create table accounts
+(
+	id int
+		constraint accounts_pk
+			primary key autoincrement,
+	name VarChar not null,
+	budget Real not null
+);
+
+create unique index accounts_name_uindex
+	on accounts (name);
