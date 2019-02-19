@@ -1,0 +1,43 @@
+select * from Customers
+where City = "London"
+
+select * from Customers
+where PostalCode = 1010
+
+select Phone from Suppliers
+where SupplierID = 11
+
+Different results, 1998 orders on top
+select * from Orders
+order by OrderDate DESC 
+
+select * from Suppliers
+where length(CompanyName) > 20
+
+select * from Customers
+where CompanyName LIKE '%market%'
+
+insert into Customers (CompanyName , customerid , contactname, address, city, postalcode, country)
+values ("The Shire", "SHIRE", "Bilbo Baggins", "1 Hobbit-Hole", "Bag End", 111, "Middle Earth")
+
+update Customers
+set PostalCode = 11122
+where ContactName = "Bilbo Baggins"
+
+select c.CustomerName, Count(o.OrderID) as TotalOrders from Orders as o
+join Customers as c on o.CustomerID = C.CustomerID
+group by c.CustomerID
+
+select c.CustomerName, Count(o.OrderID) as TotalOrders from Orders as o
+join Customers as c on o.CustomerID = C.CustomerID
+group by c.CustomerID
+order by TotalOrders desc, c.CustomerName asc;
+        
+select c.CustomerName, c.City, Count(o.OrderID) as TotalOrders from Orders as o
+join Customers as c on o.CustomerID = C.CustomerID
+group by c.city
+order by c.city , c.CustomerName asc;
+
+delete from Customers
+where Customers.CustomerID not in (select CustomerID from Orders)  
+
